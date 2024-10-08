@@ -9,11 +9,11 @@ public class GPSData {
 	protected int antall = 0;
 
 	public GPSData(int antall) {
-
-		throw new UnsupportedOperationException(TODO.method());
 		
-		// TODO
-	}
+		this.gpspoints = new GPSPoint[antall];	
+			this.antall=0;
+	
+}
 
 	public GPSPoint[] getGPSPoints() {
 		return this.gpspoints;
