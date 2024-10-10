@@ -1,30 +1,32 @@
 package no.hvl.dat100ptc.oppgave2;
 
-import no.hvl.dat100ptc.TODO;
 import no.hvl.dat100ptc.oppgave1.GPSPoint;
 
 public class GPSDataConverter {
 
-	
-	private static int TIME_STARTINDEX = 11; 
+    private static int TIME_STARTINDEX = 11; 
 
-	public static int toSeconds(String timestr) {
-		
-		int secs;
-		int hr, min, sec;
-		
-		// TODO
-		throw new UnsupportedOperationException(TODO.method());
-		
-	}
+    public static int toSeconds(String timestr) {
 
-	public static GPSPoint convert(String timeStr, String latitudeStr, String longitudeStr, String elevationStr) {
+    	String hours = timestr.substring(TIME_STARTINDEX, TIME_STARTINDEX + 2);
+        String minutes = timestr.substring(TIME_STARTINDEX + 3, TIME_STARTINDEX + 5);
+        String seconds = timestr.substring(TIME_STARTINDEX + 6, TIME_STARTINDEX + 8);
 
-		GPSPoint gpspoint;
+        int hr = Integer.parseInt(hours);
+        int min = Integer.parseInt(minutes);
+        int sec = Integer.parseInt(seconds);
 
-		// TODO 
-		throw new UnsupportedOperationException(TODO.method());
-		
-	}
-	
+        return hr * 3600 + min * 60 + sec;
+    }
+
+    public static GPSPoint convert(String timeStr, String latitudeStr, String longitudeStr, String elevationStr) {
+
+        int timeInSeconds = toSeconds(timeStr);
+        
+        double latitude = Double.parseDouble(latitudeStr);
+        double longitude = Double.parseDouble(longitudeStr);
+        double elevation = Double.parseDouble(elevationStr);
+
+        return new GPSPoint(timeInSeconds, latitude, longitude, elevation);
+    }
 }
