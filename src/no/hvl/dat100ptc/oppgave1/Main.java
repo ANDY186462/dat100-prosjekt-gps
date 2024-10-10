@@ -5,7 +5,7 @@ public class Main {
 
 		GPSPoint gpsPoint = new GPSPoint(1, 2.0, 3.0, 5.0);
 
-		System.out.println("Tidspunkt (før): " + gpsPoint.getTime());
+		System.out.println("Tidspunkt (for): " + gpsPoint.getTime());
 
 		gpsPoint.setTime(2);
 
