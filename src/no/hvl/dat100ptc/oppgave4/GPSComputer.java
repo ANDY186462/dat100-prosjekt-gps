@@ -30,9 +30,8 @@ public class GPSComputer {
 		double totalDistance = 0;
 
 		for (int i = 0; i < gpspoints.length - 1; i++) {
-			
 
-			double avstand = GPSUtils.distance(gpspoints[i], gpspoints[i+1]);
+			double avstand = GPSUtils.distance(gpspoints[i], gpspoints[i + 1]);
 
 			totalDistance += avstand;
 		}
@@ -55,12 +54,12 @@ public class GPSComputer {
 	public int totalTime() {
 
 		int tidBrukt = 0;
-		if(gpspoints == null || gpspoints.length < 2) {
+		if (gpspoints == null || gpspoints.length < 2) {
 			return 0;
 		}
 		for (int i = 0; i < gpspoints.length - 1; i++) {
-		int sekunder = gpspoints[i+1].getTime()-gpspoints[i].getTime();
-		tidBrukt += sekunder;
+			int sekunder = gpspoints[i + 1].getTime() - gpspoints[i].getTime();
+			tidBrukt += sekunder;
 		}
 		return tidBrukt;
 	}
@@ -69,27 +68,56 @@ public class GPSComputer {
 
 		double[] speeds = new double[gpspoints.length - 1];
 
-		// TODO
-		throw new UnsupportedOperationException(TODO.method());
+		for (int i = 0; i < gpspoints.length - 1; i++) {
+			// Regn ut avstand mellom punkit i og i+1
+			double avstand = GPSUtils.distance(gpspoints[i], gpspoints[i + 1]);
+			
+			// Regn ut tidsforskjellen mellom i+1 og i (antall sekunder)
+			double sekunder = gpspoints[i + 1].getTime() - gpspoints[i].getTime();
+			// kan ikke dele på 0
+			if (sekunder > 0) {
+				speeds[i] = avstand / sekunder;
+				// Hvis det deles på null (0 sekunder) så blir gjennomsnittsfarten 0
+			} else {
+				speeds[i] = 0;
+			}
+		}
+		return speeds;
 
 	}
 
 	public double maxSpeed() {
 
-		double maxspeed = 0;
+		double maxSpeed = 0;
+		double speeds[] = speeds();
 
-		// TODO
-		throw new UnsupportedOperationException(TODO.method());
-
+		// går gjennom speed-tabellen of finner største speed
+		for (double speed : speeds) {
+			if (speed > maxSpeed) {
+				maxSpeed = speed;
+			}
+		}
+		return maxSpeed;
 	}
 
 	public double averageSpeed() {
 
 		double average = 0;
-
-		// TODO
-		throw new UnsupportedOperationException(TODO.method());
-
+		double totalDistance = totalDistance();
+		double totalTime = totalTime();
+		
+		if(totalTime > 0) {
+			average = totalDistance/totalTime;
+		}else {
+			average = 0;
+			
+		}
+		
+		return average;
+			
+	
+	
+	
 	}
 
 	// conversion factor m/s to miles per hour (mps)
