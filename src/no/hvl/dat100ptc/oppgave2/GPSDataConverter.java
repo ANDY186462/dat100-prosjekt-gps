@@ -4,28 +4,26 @@ import no.hvl.dat100ptc.oppgave1.GPSPoint;
 
 public class GPSDataConverter {
 
-    private static int TIME_STARTINDEX = 11;  
+//"2017-08-13T08:52:26.000Z" er eksempel data input	
+//substring 11,12 og 13 tilnærmer den 11te, 12te og 13ne sifferet i variabelen, ogs...
+	
+	public static int toSeconds(String timestr) {
 
-    public static int toSeconds(String timestr) {
+		int hours = Integer.parseInt(timestr.substring(11, 13));
+		int minutes = Integer.parseInt(timestr.substring(14, 16));
+		int seconds = Integer.parseInt(timestr.substring(17, 19));
 
-    	String hours = timestr.substring(TIME_STARTINDEX, TIME_STARTINDEX + 2);
-        String minutes = timestr.substring(TIME_STARTINDEX + 2, TIME_STARTINDEX + 5);
-        String seconds = timestr.substring(TIME_STARTINDEX + 6, TIME_STARTINDEX + 8);
+		return hours * 3600 + minutes * 60 + seconds;
+	}
 
-        int hr = Integer.parseInt(hours);
-        int min = Integer.parseInt(minutes);
-        int sec = Integer.parseInt(seconds);
+	public static GPSPoint convert(String timeStr, String latitudeStr, String longitudeStr, String elevationStr) {
 
-        return hr * 3600 + min * 60 + sec;
-    }
+		int time = toSeconds(timeStr);
 
-    public static GPSPoint convert(String timeStr, String latitudeStr, String longitudeStr, String elevationStr) {
+		double latitude = Double.parseDouble(latitudeStr);
+		double longitude = Double.parseDouble(longitudeStr);
+		double elevation = Double.parseDouble(elevationStr);
 
-        int timeInSeconds = toSeconds(timeStr);
-        double latitude = Double.parseDouble(latitudeStr);
-        double longitude = Double.parseDouble(longitudeStr);
-        double elevation = Double.parseDouble(elevationStr);
-
-        return new GPSPoint(timeInSeconds, latitude, longitude, elevation);
-    }
+		return new GPSPoint(time, latitude, longitude, elevation);
+	}
 }
