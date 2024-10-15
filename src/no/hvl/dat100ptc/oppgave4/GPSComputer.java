@@ -29,13 +29,27 @@ public class GPSComputer {
 	
 	public double totalDistance() {
 
-		double distance = 0;
+		double totalDistance = 0;
+		
+		for(int i = 0; i < gpspoints.length - 1; i++) {
+			GPSPoint p1 = gpspoints[i];
+			GPSPoint p2 = gpspoints[i+1];
+			
+			
+			double lat1 = p1.getLatitude();
+			double lon1 = p1.getLongitude();
+			double lat2 = p2.getLatitude();
+			double lon2 = p2.getLongitude();
+		
 
-		throw new UnsupportedOperationException(TODO.method());
-
-		// TODO
-
+		double avstand = GPSUtils.distance(p1, p2);
+		
+	totalDistance += avstand;
+		}
+		return totalDistance;
+		
 	}
+	
 
 	public double totalElevation() {
 
