@@ -6,8 +6,8 @@ public class Main {
 
 	
 	public static void main(String[] args) {
-
-		// TODO
 		
+		GPSPoint s1 = new GPSPoint();
+		s1.skriv();
 	}
 }
