@@ -37,22 +37,30 @@ public class GPSUtils {
 		return min;
 	}
 		
-//		Oppgave b
-	public static double[] getLatitudes(GPSPoint[] gpspoints) {
+//		Oppgave b 1
+	public static double[] getLatitudes(GPSPoint[] gpspoints) { 
+	    double[] latitudes = new double[gpspoints.length];   
+	    for (int i = 0; i < gpspoints.length; i++) {
+	        latitudes[i] = gpspoints[i].getLatitude();
 
-		throw new UnsupportedOperationException(TODO.method());
-		
-		// TODO
-	}
+	    }
+	    return latitudes;
 
+
+			}
+		 
+
+//Oppgave c
 	public static double[] getLongitudes(GPSPoint[] gpspoints) {
+		double [] longitudes = new double[gpspoints.length];
+		for (int i = 0;i <gpspoints.length; i++) {
+			longitudes[i]= gpspoints[i].getLongitude();
+		}
 
-		
-		throw new UnsupportedOperationException(TODO.method());
-		
-		// TODO 
-
+		return longitudes;
 	}
+
+
 
 	private static final int R = 6371000; // jordens radius
 
