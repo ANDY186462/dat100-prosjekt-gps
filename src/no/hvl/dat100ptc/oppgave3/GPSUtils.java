@@ -104,13 +104,13 @@ public class GPSUtils {
 
 //	Oppgave e
 	public static double speed(GPSPoint gpspoint1, GPSPoint gpspoint2) {
+		
+		int secs = gpspoint2.getTime() - gpspoint1.getTime();
+        double distance= distance(gpspoint1, gpspoint2);
+		double speed= distance / secs;
+		
+		return speed;
 
-		int secs;
-		double speed;
-
-		throw new UnsupportedOperationException(TODO.method());
-
-		// TODO
 
 	}
 
@@ -120,13 +120,10 @@ public class GPSUtils {
 		String timestr;
 		String TIMESEP = ":";
 
-		throw new UnsupportedOperationException(TODO.method());
 
-		// TODO
 
 	}
 
-	private static int TEXTWIDTH = 10;
 
 //	oppgave g
 	public static String formatDouble(double d) {
