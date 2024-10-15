@@ -9,24 +9,24 @@ public class GPSData {
 	protected int antall = 0;
 
 	public GPSData(int antall) {
-		
-		this.gpspoints = new GPSPoint[antall];	
-			this.antall=0;
-	
-}
+
+		this.gpspoints = new GPSPoint[antall];
+		this.antall = 0;
+
+	}
 
 	public GPSPoint[] getGPSPoints() {
 		return this.gpspoints;
 	}
-	
+
 	protected boolean insertGPS(GPSPoint gpspoint) {
 
 		boolean inserted = false;
-		
+
 		throw new UnsupportedOperationException(TODO.method());
-		
-		// TODO 
-	
+
+		// TODO
+
 	}
 
 	public boolean insert(String time, String latitude, String longitude, String elevation) {
@@ -35,14 +35,14 @@ public class GPSData {
 
 		throw new UnsupportedOperationException(TODO.method());
 
-		// TODO 
-		
+		// TODO
+
 	}
 
 	public void print() {
 
 		throw new UnsupportedOperationException(TODO.method());
 
-		// TODO 
+		// TODO
 	}
 }
