@@ -37,7 +37,7 @@ public class GPSUtils {
 		return min;
 	}
 		
-//		Oppgave b 1
+//		Oppgave b 1 breddegradene
 	public static double[] getLatitudes(GPSPoint[] gpspoints) { 
 	    double[] latitudes = new double[gpspoints.length];   
 	    for (int i = 0; i < gpspoints.length; i++) {
@@ -50,7 +50,7 @@ public class GPSUtils {
 			}
 		 
 
-//Oppgave c
+//Oppgave c lengdegrader
 	public static double[] getLongitudes(GPSPoint[] gpspoints) {
 		double [] longitudes = new double[gpspoints.length];
 		for (int i = 0;i <gpspoints.length; i++) {
