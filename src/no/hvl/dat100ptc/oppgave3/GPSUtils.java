@@ -6,7 +6,7 @@ import no.hvl.dat100ptc.oppgave1.GPSPoint;
 import no.hvl.dat100ptc.TODO;
 
 public class GPSUtils {
-
+//max tall i tabellen
 	public static double findMax(double[] da) {
 
 		double max; 
@@ -21,16 +21,23 @@ public class GPSUtils {
 		
 		return max;
 	}
-
+//Minste tall i tabellen 
 	public static double findMin(double[] da) {
 
-		double min;
 
-		// TODO 
-		throw new UnsupportedOperationException(TODO.method());
+		double min; 
 		
+		min = da[0];
+		for (double d : da) {
+			if (d < min) {
+				min = d;
+			}
+		}
+		
+		return min;
 	}
-
+		
+//		Oppgave b
 	public static double[] getLatitudes(GPSPoint[] gpspoints) {
 
 		throw new UnsupportedOperationException(TODO.method());
