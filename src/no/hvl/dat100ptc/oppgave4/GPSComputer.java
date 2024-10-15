@@ -1,12 +1,10 @@
 package no.hvl.dat100ptc.oppgave4;
 
+import no.hvl.dat100ptc.TODO;
 import no.hvl.dat100ptc.oppgave1.GPSPoint;
 import no.hvl.dat100ptc.oppgave2.GPSData;
-import no.hvl.dat100ptc.oppgave2.GPSDataConverter;
 import no.hvl.dat100ptc.oppgave2.GPSDataFileReader;
 import no.hvl.dat100ptc.oppgave3.GPSUtils;
-
-import no.hvl.dat100ptc.TODO;
 
 public class GPSComputer {
 	
@@ -42,9 +40,9 @@ public class GPSComputer {
 			double lon2 = p2.getLongitude();
 		
 
-		double avstand = GPSUtils.distance(p1, p2);
+		double avstand = GPSUtils.distance(lat1, lon1, lat2, lon2);
 		
-	totalDistance += avstand;
+		totalDistance += avstand;
 		}
 		return totalDistance;
 		
@@ -53,19 +51,23 @@ public class GPSComputer {
 
 	public double totalElevation() {
 
-		double elevation = 0;
-
-		throw new UnsupportedOperationException(TODO.method());
+		double totalElevation = 0;
+		for(int i = 0; i < gpspoints.length - 1; i++) {
+			double elevationDifference = gpspoints[i+1].getElevation() - gpspoints[i].getElevation();
+		if (elevationDifference > 0){
+				totalElevation += elevationDifference;
+			}}
+			return totalElevation;
+		}
+	
 		
-		// TODO 
-		
-	}
+	
 
 	public int totalTime() {
-
-		// TODO
-		throw new UnsupportedOperationException(TODO.method());
+			
+		int tidBrukt = 0;
 		
+		GPSUtils.formatTime(5);
 	}
 		
 
