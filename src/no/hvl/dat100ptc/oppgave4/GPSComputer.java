@@ -71,7 +71,7 @@ public class GPSComputer {
 		for (int i = 0; i < gpspoints.length - 1; i++) {
 			// Regn ut avstand mellom punkit i og i+1
 			double avstand = GPSUtils.distance(gpspoints[i], gpspoints[i + 1]);
-			
+
 			// Regn ut tidsforskjellen mellom i+1 og i (antall sekunder)
 			double sekunder = gpspoints[i + 1].getTime() - gpspoints[i].getTime();
 			// kan ikke dele på 0
@@ -105,19 +105,16 @@ public class GPSComputer {
 		double average = 0;
 		double totalDistance = totalDistance();
 		double totalTime = totalTime();
-		
-		if(totalTime > 0) {
-			average = totalDistance/totalTime;
-		}else {
+
+		if (totalTime > 0) {
+			average = totalDistance / totalTime;
+		} else {
 			average = 0;
-			
+
 		}
-		
+
 		return average;
-			
-	
-	
-	
+
 	}
 
 	// conversion factor m/s to miles per hour (mps)
@@ -130,43 +127,94 @@ public class GPSComputer {
 		double met = 0;
 		double speedmph = speed * MS;
 
-		
-		if(speedmph < 10) {
-			met = 4;
-		} else if(speedmph < 12) {
-			met = 6;
-		}else if(speedmph < 14) {
-			met = 8;
-		}else if(speedmph < 16) {
-			met = 10;
-		}else if(speedmph < 20) {
-			met=12;
-		}else if(speedmph > 20) {
-			met = 16;
+		double[][] metTable = { 
+				{ 10.0, 4.0 }, // Hastigheten er 10, Met er 4 osv...
+				{ 12.0, 6.0 }, 
+				{ 14.0, 8.0 }, 
+				{ 16.0, 10.0 }, 
+				{ 20.0, 12.0 }, 
+				{ Double.MAX_VALUE, 16.0 } 
+				};
+
+		for (int i = 0; i < metTable.length; i++) {
+			if (speedmph < metTable[i][0]) {
+				met = metTable[i][1];
+				break;
+				
+			}
 		}
-			
-		double secsToHours = secs / 3600;
+
+			double secsToHours = secs / 3600;
+
+			kcal = met * weight * secsToHours;
+
+			return kcal;
 		
-		kcal = met * weight * secsToHours;
-		
-		return kcal;
 	}
-			
 
 	public double totalKcal(double weight) {
 
 		double totalkcal = 0;
-
 		
+		double totalDistance = totalDistance();
+		double totalTime = totalTime();
+		
+		double speed = totalDistance/totalTime; // meter i sekundet
+		
+		double met = 0;
+		double speedmph = speed * MS; // meter i sekundet * 2.23 = 1 mph
+
+		double[][] metTable = { 
+				{ 10.0, 4.0 }, // Hastigheten er 10(mph), Met er 4 osv...
+				{ 12.0, 6.0 }, 
+				{ 14.0, 8.0 }, 
+				{ 16.0, 10.0 }, 
+				{ 20.0, 12.0 }, 
+				{ Double.MAX_VALUE, 16.0 } // Når hastigheten er max, er Met 16
+				};
+
+		for (int i = 0; i < metTable.length; i++) {
+			if (speedmph < metTable[i][0]) {
+				met = metTable[i][1];
+				break;
+				
+			}
+		}
+
+			double secsToHours = totalTime / 3600;
+
+			totalkcal = met * weight * secsToHours;
+
+			return totalkcal;
 	}
+		
+		
 
 	private static double WEIGHT = 80.0;
 
 	public void displayStatistics() {
-
-		// TODO
-		throw new UnsupportedOperationException(TODO.method());
-
+		double totalTime = totalTime();
+		double totalDistance = totalDistance();
+		double totalElevation = totalElevation();
+		double maxSpeed = maxSpeed();
+		double totalkcal = totalKcal(WEIGHT);	
+		
+		
+		int hours = (int) (totalTime / 3600);
+		int minutes = (int) ((totalTime % 3600) / 60);
+		int seconds = (int) (totalTime % 60);
+		
+		double averageSpeed = (totalDistance/1000) / (totalTime/3600); 
+		
+		
+		System.out.println("==============================================");
+		System.out.println("Total time: " + hours+":"+minutes+":"+seconds);
+		System.out.println("Total distance: " + totalDistance);
+		System.out.println("Total elevation: " + totalElevation);
+		System.out.println("Max speed: " + maxSpeed);
+		System.out.println("Average speed: " + averageSpeed);
+		System.out.println("Energy: " + totalkcal);
+		System.out.println("==============================================");
 	}
 
 }
