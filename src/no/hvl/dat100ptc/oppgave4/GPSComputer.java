@@ -91,7 +91,7 @@ public class GPSComputer {
 		double maxSpeed = 0;
 		double speeds[] = speeds();
 
-		// går gjennom speed-tabellen of finner største speed
+		// går gjennom speed-tabellen og finner største speed
 		for (double speed : speeds) {
 			if (speed > maxSpeed) {
 				maxSpeed = speed;
@@ -130,18 +130,34 @@ public class GPSComputer {
 		double met = 0;
 		double speedmph = speed * MS;
 
-		// TODO
-		throw new UnsupportedOperationException(TODO.method());
-
+		
+		if(speedmph < 10) {
+			met = 4;
+		} else if(speedmph < 12) {
+			met = 6;
+		}else if(speedmph < 14) {
+			met = 8;
+		}else if(speedmph < 16) {
+			met = 10;
+		}else if(speedmph < 20) {
+			met=12;
+		}else if(speedmph > 20) {
+			met = 16;
+		}
+			
+		double secsToHours = secs / 3600;
+		
+		kcal = met * weight * secsToHours;
+		
+		return kcal;
 	}
+			
 
 	public double totalKcal(double weight) {
 
 		double totalkcal = 0;
 
-		// TODO
-		throw new UnsupportedOperationException(TODO.method());
-
+		
 	}
 
 	private static double WEIGHT = 80.0;
