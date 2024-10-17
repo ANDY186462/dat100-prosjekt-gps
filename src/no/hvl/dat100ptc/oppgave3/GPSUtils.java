@@ -1,9 +1,8 @@
 package no.hvl.dat100ptc.oppgave3;
-
-import static java.lang.Math.*;
+import java.util.*;
 
 import no.hvl.dat100ptc.oppgave1.GPSPoint;
-import no.hvl.dat100ptc.TODO;
+//import no.hvl.dat100ptc.TODO;
 
 public class GPSUtils {
 //max tall i tabellen
@@ -12,7 +11,6 @@ public class GPSUtils {
 		double max;
 
 		max = da[0];
-
 		for (double d : da) {
 			if (d > max) {
 				max = d;
@@ -117,9 +115,14 @@ public class GPSUtils {
 //oppgave f ska retunere time,min, sek, i stregn metode
 	public static String formatTime(int secs) {
 
-		String timestr;
-		String TIMESEP = ":";
+		int timer= secs/3600;
+	    int min = (secs % 3600) / 60;
+	    int sek = secs % 60;
 
+		
+	    String tidIstring = String.format("%02d:%02d:%02d", timer, min, sek);
+
+	    return String.format("%10s", tidIstring);
 
 
 	}
@@ -128,11 +131,8 @@ public class GPSUtils {
 //	oppgave g
 	public static String formatDouble(double d) {
 
-		String str;
-
-		throw new UnsupportedOperationException(TODO.method());
-
-		// TODO
+	    String str = String.format(Locale .US, "%10.2f", d);
+	    return str;
 
 	}
 }
