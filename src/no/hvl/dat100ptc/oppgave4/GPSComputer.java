@@ -128,12 +128,12 @@ public class GPSComputer {
 		double speedmph = speed * MS;
 
 		double[][] metTable = { 
-				{ 10.0, 4.0 }, // Hastigheten er 10, Met er 4 osv...
+				{ 10.0, 4.0 }, // Hastigheten er 10 (mph), Met er 4 osv...
 				{ 12.0, 6.0 }, 
 				{ 14.0, 8.0 }, 
 				{ 16.0, 10.0 }, 
 				{ 20.0, 12.0 }, 
-				{ Double.MAX_VALUE, 16.0 } 
+				{ Double.MAX_VALUE, 16.0 } // Når hastigheten er max, er Met 16
 				};
 
 		for (int i = 0; i < metTable.length; i++) {
