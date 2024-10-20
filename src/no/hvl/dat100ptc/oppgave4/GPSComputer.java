@@ -54,8 +54,9 @@ public class GPSComputer {
 	public int totalTime() {
 
 		int tidBrukt = 0;
-		if (gpspoints == null || gpspoints.length < 2) {
+		if (gpspoints == null || gpspoints.length < 2) { //gpspoints = 0, må være null, gpspoints.length krever at det må være minst 2 punkter
 			return 0;
+		//blir feil i koden hvis disse ikke stemmer, derfor returnere 0
 		}
 		for (int i = 0; i < gpspoints.length - 1; i++) {
 			int sekunder = gpspoints[i + 1].getTime() - gpspoints[i].getTime();
@@ -69,7 +70,7 @@ public class GPSComputer {
 		double[] speeds = new double[gpspoints.length - 1];
 
 		for (int i = 0; i < gpspoints.length - 1; i++) {
-			// Regn ut avstand mellom punkit i og i+1
+			// Regn ut avstand mellom punkt i og i+1
 			double avstand = GPSUtils.distance(gpspoints[i], gpspoints[i + 1]);
 
 			// Regn ut tidsforskjellen mellom i+1 og i (antall sekunder)
@@ -123,7 +124,6 @@ public class GPSComputer {
 	public double kcal(double weight, int secs, double speed) {
 
 		double kcal;
-
 		double met = 0;
 		double speedmph = speed * MS;
 
@@ -137,8 +137,8 @@ public class GPSComputer {
 				};
 
 		for (int i = 0; i < metTable.length; i++) {
-			if (speedmph < metTable[i][0]) {
-				met = metTable[i][1];
+			if (speedmph < metTable[i][0]) { //henter hastigheten fra første[0] kolonne i rad i
+				met = metTable[i][1]; //henter met-verdien fra andre [1] kolonne i rad i
 				break;
 				
 			}
@@ -174,8 +174,8 @@ public class GPSComputer {
 				};
 
 		for (int i = 0; i < metTable.length; i++) {
-			if (speedmph < metTable[i][0]) {
-				met = metTable[i][1];
+			if (speedmph < metTable[i][0]) { //henter hastigheten fra første[0] kolonne i rad i
+				met = metTable[i][1];	//henter met-verdien fra andre [1] kolonne i rad i
 				break;
 				
 			}
@@ -200,7 +200,7 @@ public class GPSComputer {
 		double totalkcal = totalKcal(WEIGHT);	
 		
 		
-		int hours = (int) (totalTime / 3600);
+		int hours = (int) (totalTime / 3600); //regne ut bare sekunder til timer, minutter og sekunder
 		int minutes = (int) ((totalTime % 3600) / 60);
 		int seconds = (int) (totalTime % 60);
 		
