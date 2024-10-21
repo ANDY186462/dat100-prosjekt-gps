@@ -208,13 +208,14 @@ public class GPSComputer {
 		
 		
 		System.out.println("==============================================");
-		System.out.println("Total time: " + hours+":"+minutes+":"+seconds);
-		System.out.println("Total distance: " + totalDistance);
-		System.out.println("Total elevation: " + totalElevation);
-		System.out.println("Max speed: " + maxSpeed);
-		System.out.println("Average speed: " + averageSpeed);
-		System.out.println("Energy: " + totalkcal);
+		System.out.println("Total time:      " + hours+":"+minutes+":"+seconds);
+		System.out.println("Total distance:  " + totalDistance/1000+" km/t");
+		System.out.println("Total elevation: " + totalElevation+" m");
+		System.out.println("Max speed:       " + maxSpeed*3.6+" km/t ");
+		System.out.println("Average speed:   " + averageSpeed+" km/t");
+		System.out.println("Energy:          " + (totalkcal +" kcal" ));
 		System.out.println("==============================================");
+		System.out.println();
 	}
 
 }
