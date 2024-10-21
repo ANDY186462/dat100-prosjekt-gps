@@ -47,16 +47,16 @@ public class ShowProfile extends EasyGraphics {
 		int x = MARGIN; // startpunkt på x-aksen
 
 		for (int i = 0; i < gpspoints.length; i++) {
-			
+
 			int height = (int) gpspoints[i].getElevation();
 
-			if (height < 0) { //dette sørger for at koden ignorerer negative høyder siden de er feil
-				height = 0; //og deretter om den er negativ setter vi den lik 0
+			if (height < 0) { // dette sørger for at koden ignorerer negative høyder siden de er feil
+				height = 0; // og deretter om den er negativ setter vi den lik 0
 			}
 
 			drawLine(x, ybase, x, ybase - height);
 
-			x += 3; //dette legger litt mellomrom mellom ver linje i grafen
+			x += 3; // dette legger litt mellomrom mellom ver linje i grafen
 		}
 	}
 }
