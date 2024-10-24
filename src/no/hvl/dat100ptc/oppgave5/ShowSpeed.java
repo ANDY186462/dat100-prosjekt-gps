@@ -29,7 +29,7 @@ public class ShowSpeed extends EasyGraphics {
 	}
 
 	public void run() {
-		
+
 		int N = gpscomputer.speeds().length;
 
 		makeWindow("Speed profile", 2 * MARGIN + 3 * N, 2 * MARGIN + BARHEIGHT);
@@ -51,11 +51,10 @@ public class ShowSpeed extends EasyGraphics {
 			drawLine(x, ybase, x, ybase - speed);
 			x += 2;
 		}
-		
+
 		setColor(0, 255, 0);
-		
+
 		drawLine(MARGIN, ybase - (int) averagespeed, MARGIN + 2 * speeds.length, ybase - (int) averagespeed);
-		
 
 	}
 }

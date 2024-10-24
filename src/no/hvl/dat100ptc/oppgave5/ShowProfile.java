@@ -13,9 +13,9 @@ import javax.swing.JOptionPane;
 
 public class ShowProfile extends EasyGraphics {
 
-	private static final int MARGIN = 50; // margin on the sides
+	private static final int MARGIN = 50;
 
-	private static final int MAXBARHEIGHT = 500; // assume no height above 500 meters
+	private static final int MAXBARHEIGHT = 500;
 
 	private GPSPoint[] gpspoints;
 
@@ -34,29 +34,28 @@ public class ShowProfile extends EasyGraphics {
 
 	public void run() {
 
-		int N = gpspoints.length; // number of data points
+		int N = gpspoints.length;
 
 		makeWindow("Height profile", 2 * MARGIN + 3 * N, 2 * MARGIN + MAXBARHEIGHT);
 
-		// top margin + height of drawing area
 		showHeightProfile(MARGIN + MAXBARHEIGHT);
 	}
 
 	public void showHeightProfile(int ybase) {
 
-		int x = MARGIN; // startpunkt på x-aksen
+		int x = MARGIN;
 
 		for (int i = 0; i < gpspoints.length; i++) {
 
 			int height = (int) gpspoints[i].getElevation();
 
-			if (height < 0) { // dette sørger for at koden ignorerer negative høyder siden de er feil
-				height = 0; // og deretter om den er negativ setter vi den lik 0
+			if (height < 0) {
+				height = 0;
 			}
 
 			drawLine(x, ybase, x, ybase - height);
 
-			x += 3; // dette legger litt mellomrom mellom ver linje i grafen
+			x += 3;
 		}
 	}
 }
