@@ -12,8 +12,9 @@ import no.hvl.dat100ptc.TODO;
 
 public class ShowSpeed extends EasyGraphics {
 
-	private static int MARGIN = 50;
-	private static int BARHEIGHT = 500;
+	private static final int MARGIN = 50;
+	
+	private static final int BARHEIGHT = 500;
 
 	private GPSComputer gpscomputer;
 
