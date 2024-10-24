@@ -64,17 +64,15 @@ public class ShowRoute extends EasyGraphics {
 
 	public void showRouteMap(int ybase) {
 
-		setColor(0, 0, 255); // Sett fargen til blå for ruten
+		setColor(0, 0, 255);
 
 		for (int i = 0; i < gpspoints.length - 1; i++) {
 
-			// Hent posisjonene til to påfølgende GPS-punkter
 			int x1 = MARGIN + (int) ((gpspoints[i].getLongitude() - minlon) * xstep);
 			int y1 = ybase - (int) ((gpspoints[i].getLatitude() - minlat) * ystep);
 			int x2 = MARGIN + (int) ((gpspoints[i + 1].getLongitude() - minlon) * xstep);
 			int y2 = ybase - (int) ((gpspoints[i + 1].getLatitude() - minlat) * ystep);
 
-			// Tegn linjen mellom de to punktene
 			drawLine(x1, y1, x2, y2);
 		}
 
@@ -86,18 +84,15 @@ public class ShowRoute extends EasyGraphics {
 		int x = MARGIN;
 		int y = MARGIN;
 
-		// Sett fargen til svart for teksten
 		setColor(0, 0, 0);
 		setFont("Courier", 12);
 
-		// Hent statistikk fra gpscomputer
 		double totalDistance = gpscomputer.totalDistance() / 1000; // i km
 		double totalElevation = gpscomputer.totalElevation(); // i meter
 		double totalTime = gpscomputer.totalTime(); // i sekunder
 		double averageSpeed = gpscomputer.averageSpeed(); // i km/t
 		double maxSpeed = gpscomputer.maxSpeed(); // i km/t
 
-		// Tegn statistikken i vinduet
 		drawString(String.format("Total distance: %.2f km", totalDistance), x, y);
 		drawString(String.format("Total elevation: %.2f m", totalElevation), x, y + TEXTDISTANCE);
 		drawString(String.format("Total time: %.2f s", totalTime), x, y + 2 * TEXTDISTANCE);
@@ -107,20 +102,18 @@ public class ShowRoute extends EasyGraphics {
 
 	public void replayRoute(int ybase) {
 
-		setColor(0, 0, 255); // Blå farge for sirkelen
-		int radius = 5; // Radius for sirkelen
+		setColor(0, 0, 255);
+		int radius = 5;
 
-		// Tegn en sirkel ved første punkt
 		int x = MARGIN + (int) ((gpspoints[0].getLongitude() - minlon) * xstep);
 		int y = ybase - (int) ((gpspoints[0].getLatitude() - minlat) * ystep);
 		int circle = fillCircle(x, y, radius);
 
-		// Flytt sirkelen langs ruten
 		for (int i = 1; i < gpspoints.length; i++) {
 			x = MARGIN + (int) ((gpspoints[i].getLongitude() - minlon) * xstep);
 			y = ybase - (int) ((gpspoints[i].getLatitude() - minlat) * ystep);
 			moveCircle(circle, x, y);
-			pause(200); // Pause for å se bevegelsen
+
 		}
 	}
 }
