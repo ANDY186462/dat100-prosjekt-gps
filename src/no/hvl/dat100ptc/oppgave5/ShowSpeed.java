@@ -53,6 +53,7 @@ public class ShowSpeed extends EasyGraphics {
 		}
 		
 		setColor(0, 255, 0);
+		
 		drawLine(MARGIN, ybase - (int) averagespeed, MARGIN + 2 * speeds.length, ybase - (int) averagespeed);
 		
 
